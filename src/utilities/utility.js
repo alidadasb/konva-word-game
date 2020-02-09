@@ -9,8 +9,8 @@ export class Utility {
         return result;
     }
 
-    static makeNumber(max) {
-        return Math.floor(Math.random() * Math.floor(max));
+    static makeNumber({min, max}) {
+        return Math.floor(Math.random() * Math.floor(max - min)) + min;
     }
 
     static getRandomColor() {

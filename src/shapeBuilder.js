@@ -8,8 +8,8 @@ export class ShapeBuilder {
         let colors = Utility.generateList(chanceSeed, Utility.getRandomColor, null);
 
         return <Circle
-            x={100}
-            y={100}
+            x={0}
+            y={0}
             fill={Chance.choose(colors)}
             radius={50}
         />
@@ -19,14 +19,14 @@ export class ShapeBuilder {
         return Utility.generateList(number, ShapeBuilder.createCircle, 10);
     }
 
-    static createGroup(chanceSeed) {
-        let xs = Utility.generateListRecursiveArg(chanceSeed, (x) => x + 55, 10);
-        let ys = Utility.generateListRecursiveArg(chanceSeed, (x) => x + 55, 10);
+    static createGroup(options) {
         return <Group
-            x={Chance.choose(xs)}
-            y={Chance.choose(ys)}
+            x={Chance.choose(options.xs)}
+            y={Chance.choose(options.ys)}
+            border={1}
         >
-           { ShapeBuilder.createCircle(10)}
+            {ShapeBuilder.createCircle(10)}
+            {ShapeBuilder.createText()}
         </Group>
     }
 
@@ -34,20 +34,18 @@ export class ShapeBuilder {
         return <Text
             x={1}
             y={1}
-            text={'Simple Text'}
+            text={'ABC'}
             fontSize={30}
             fontFamily={'Calibri'}
             fill={'green'}
         />
-            }
+    }
 
-            static createGroups() {
-
-
-            return Utility.generateList(10, ShapeBuilder.createGroup)
-
-            // return [circle]
-
-        }
-            }
+    static createGroups() {
+        return Utility.generateList(3, ShapeBuilder.createGroup, {
+            xs: Utility.generateListRecursiveArg(10, (x) => x + 55, 10),
+            ys: Utility.generateListRecursiveArg(10, (x) => x + 55, 10)
+        })
+    }
+}
 
