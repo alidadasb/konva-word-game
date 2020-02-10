@@ -1,15 +1,12 @@
 import React from 'react';
 import './App.css';
-import {ShapeBuilder} from "./shapeBuilder";
-import Canvas from "./canvas/Canvas";
+import {Game} from "./Components/Game";
 
 
 function App() {
-    let shapes = ShapeBuilder.createGroups(10);
     return (
         <div className="App">
-            {/*<B12Canvas shapes={shapes}/>*/}
-            <Canvas />
+            <Game numberOfBalls={5} type={'word'}/>
         </div>
     );
 }

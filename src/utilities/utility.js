@@ -1,3 +1,5 @@
+import {Chance} from "./chance";
+
 export class Utility {
     static makeId(length) {
         let result = '';
@@ -7,10 +9,6 @@ export class Utility {
             result += characters.charAt(Math.floor(Math.random() * charactersLength));
         }
         return result;
-    }
-
-    static makeNumber({min, max}) {
-        return Math.floor(Math.random() * Math.floor(max - min)) + min;
     }
 
     static getRandomColor() {
@@ -25,18 +23,35 @@ export class Utility {
     static generateList(numberOfItems, fnc, args) {
         let list = [];
         for (let i = 0; i < numberOfItems; i++) {
-            list.push(fnc(args));
+            list.push(fnc(args, i));
         }
         return list;
     }
 
-    static generateListRecursiveArg(numberOfItems, fnc, args) {
+    static generateListRecursiveArg(count, fnc, args) {
         let list = [];
         let lastVal = args;
-        for (let i = 0; i < numberOfItems; i++) {
+        for (let i = 0; i < count; i++) {
             lastVal = fnc(lastVal);
             list.push(lastVal);
         }
         return list;
+    }
+
+    static generateSeries(min, max) {
+        let list = [];
+
+        for (let i = min; i < max; i++) {
+            list.push(i)
+        }
+
+        return list;
+    }
+
+    static pickWithinRange(count, {min, max}) {
+        let newList = [];
+        while (newList.length <= count) {
+            newList.push(Chance.makeNumber({min, max}));
+        }
     }
 }

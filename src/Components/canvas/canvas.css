@@ -1,0 +1,14 @@
+.container {
+    border: 1px solid red;
+    width: 800px;
+    height: 700px;
+    margin: 20px;
+}
+
+.main-container {
+    margin: 10px;
+}
+
+.balls-number {
+    width: 30px;
+}
