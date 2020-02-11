@@ -311,9 +311,13 @@ class Canvas extends Component {
   }
 
   createSeparator() {
-    return new Konva.Line({
-      points: [0, HEADER_HEIGHT - RADIUS, 800, HEADER_HEIGHT - RADIUS],
+    return new Konva.Rect({
+      x:this.stage.x(),
+      y:this.stage.y(),
+      width: this.stage.width(),
+      height: HEADER_HEIGHT - RADIUS,
       stroke: 'red',
+      fill: 'lightgray',
       tension: 1
     })
   }
