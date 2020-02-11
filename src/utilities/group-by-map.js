@@ -9,14 +9,13 @@ class GroupByMap {
   }
 
   put(key, value) {
-    this._change.set(key,value);
+    this._change.set(key, value);
   }
 
   add(key, value) {
     if (this._change.has(key)) {
       this._change.get(key).push(value);
-    }
-    else {
+    } else {
       this._change.set(key, [value]);
     }
 
@@ -29,6 +28,17 @@ class GroupByMap {
 
   has(key) {
     return this._change.has(key);
+  }
+
+  removeByKey(key) {
+    let object = this._change.get(key);
+
+    object.splice(0, 1);
+    this._totalItemCount--;
+
+    if (!object.length) {
+      this._change.delete(key)
+    }
   }
 
   remove(key, value) {
@@ -50,7 +60,7 @@ class GroupByMap {
     return this._change;
   }
 
-  totalItemCount(){
+  totalItemCount() {
     return this._totalItemCount;
   }
 }
